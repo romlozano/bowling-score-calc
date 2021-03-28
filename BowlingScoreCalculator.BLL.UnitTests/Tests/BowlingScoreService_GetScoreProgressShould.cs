@@ -1,9 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace BowlingScoreCalculator.BLL.UnitTests
+namespace BowlingScoreCalculator.BLL.UnitTests.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class BowlingScoreService_GetScoreProgressShould
     {
         [TestMethod]
         public void TestMethod1()
