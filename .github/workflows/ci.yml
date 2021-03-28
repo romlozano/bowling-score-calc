@@ -1,0 +1,51 @@
+name: .NET CI with Publish
+
+on: push # Test only
+  #push:
+  #  branches: [ main ]
+  #pull_request:
+  #  branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
+
+  push:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    if: github.event_name == 'push'
+
+    env:
+      IMAGE_NAME: romlozano/bowling-score-calc
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        env:
+          DOCKERFILE_PATH: BowlingScoreCalculator.WebAPI/Dockerfile
+        run: docker build . --file $DOCKERFILE_PATH --tag $IMAGE_NAME
+
+      - name: Log into registry
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USERNAME --password-stdin
+
+      - name: Push image
+        run: docker push $IMAGE_NAME
