@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BowlingScoreCalculator.WebAPI", "BowlingScoreCalculator.WebAPI\BowlingScoreCalculator.WebAPI.csproj", "{2C6082C8-C291-4E66-A041-33C70BD6661A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingScoreCalculator.BLL", "BowlingScoreCalculator.BLL\BowlingScoreCalculator.BLL.csproj", "{B18104F7-C6A1-44E3-B133-E6A99D7E0670}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BowlingScoreCalculator.BLL", "BowlingScoreCalculator.BLL\BowlingScoreCalculator.BLL.csproj", "{B18104F7-C6A1-44E3-B133-E6A99D7E0670}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DFA6E0D7-3173-4A35-91DD-1FBCA4ED77E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingScoreCalculator.BLL.UnitTests", "BowlingScoreCalculator.BLL.UnitTests\BowlingScoreCalculator.BLL.UnitTests.csproj", "{7AE37EE5-59BC-459E-8C70-7EC6B30F6BDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +25,16 @@ Global
 		{B18104F7-C6A1-44E3-B133-E6A99D7E0670}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B18104F7-C6A1-44E3-B133-E6A99D7E0670}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B18104F7-C6A1-44E3-B133-E6A99D7E0670}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AE37EE5-59BC-459E-8C70-7EC6B30F6BDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AE37EE5-59BC-459E-8C70-7EC6B30F6BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AE37EE5-59BC-459E-8C70-7EC6B30F6BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AE37EE5-59BC-459E-8C70-7EC6B30F6BDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7AE37EE5-59BC-459E-8C70-7EC6B30F6BDB} = {DFA6E0D7-3173-4A35-91DD-1FBCA4ED77E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4FA18CFC-EE6A-46BD-B2A8-9C62A2A36A50}
