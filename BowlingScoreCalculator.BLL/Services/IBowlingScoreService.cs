@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BowlingScoreCalculator.BLL.Models.Request;
+using BowlingScoreCalculator.BLL.Models.Response;
 
 namespace BowlingScoreCalculator.BLL.Services
 {
     public interface IBowlingScoreService
     {
+        GetScoreProgressResponse GetScoreProgress(GetScoreProgressRequest request);
     }
 }
