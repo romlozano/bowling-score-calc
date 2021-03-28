@@ -49,11 +49,10 @@ namespace BowlingScoreCalculator.BLL.Services
                     {
                         response.FrameProgressScores.Add(PendingIndicator);
                     }
-                    
                 }
                 else if (isSpare)
                 {
-                    bool canCompleteSpare = (index + 1) < pinsDowned.Count;
+                    bool canCompleteSpare = (index + 2) < pinsDowned.Count;
                     if (canCompleteSpare)
                     {
                         int score = currentPinDowned + pinsDowned[index + 1] + pinsDowned[index + 2];
