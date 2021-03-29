@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
+using System.IO;
+using System.Reflection;
 
 namespace BowlingScoreCalculator.WebAPI
 {
@@ -27,8 +29,21 @@ namespace BowlingScoreCalculator.WebAPI
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "BowlingScoreCalculator.WebAPI", Version = "v1" });
-});
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "BowlingScoreCalculator.WebAPI",
+                    Version = "v1",
+                    Description = "Unibet Coding Exam - Bowling Score Calculator",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Rex Lozano",
+                        Email = "rex@memyselfai.co"
+                    }
+                });
+                string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
 
             services.AddTransient<IBowlingScoreService, BowlingScoreService>();
         }
@@ -39,9 +54,10 @@ namespace BowlingScoreCalculator.WebAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BowlingScoreCalculator.WebAPI v1"));
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BowlingScoreCalculator.WebAPI v1"));
 
             app.UseRouting();
 

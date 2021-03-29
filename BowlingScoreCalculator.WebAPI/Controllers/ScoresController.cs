@@ -4,12 +4,14 @@ using BowlingScoreCalculator.WebAPI.Models.Request;
 using BowlingScoreCalculator.WebAPI.Models.Response;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 using BLLModelsRequest = BowlingScoreCalculator.BLL.Models.Request;
 
 namespace BowlingScoreCalculator.WebAPI.Controllers
 {
     [Route("scores")]
     [ApiController]
+    [Produces(MediaTypeNames.Application.Json)]
     public class ScoresController : ControllerBase
     {
         private readonly IBowlingScoreService bowlingScoreService;
