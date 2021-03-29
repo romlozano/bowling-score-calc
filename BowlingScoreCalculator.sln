@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BowlingScoreCalculator.BLL"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DFA6E0D7-3173-4A35-91DD-1FBCA4ED77E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingScoreCalculator.BLL.UnitTests", "BowlingScoreCalculator.BLL.UnitTests\BowlingScoreCalculator.BLL.UnitTests.csproj", "{7AE37EE5-59BC-459E-8C70-7EC6B30F6BDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BowlingScoreCalculator.BLL.UnitTests", "BowlingScoreCalculator.BLL.UnitTests\BowlingScoreCalculator.BLL.UnitTests.csproj", "{7AE37EE5-59BC-459E-8C70-7EC6B30F6BDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingScoreCalculator.Core", "BowlingScoreCalculator.Core\BowlingScoreCalculator.Core.csproj", "{E1A7835C-418E-40E4-86F7-2D97BCCA1AB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{7AE37EE5-59BC-459E-8C70-7EC6B30F6BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AE37EE5-59BC-459E-8C70-7EC6B30F6BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AE37EE5-59BC-459E-8C70-7EC6B30F6BDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1A7835C-418E-40E4-86F7-2D97BCCA1AB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1A7835C-418E-40E4-86F7-2D97BCCA1AB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1A7835C-418E-40E4-86F7-2D97BCCA1AB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1A7835C-418E-40E4-86F7-2D97BCCA1AB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
