@@ -29,7 +29,7 @@ namespace BowlingScoreCalculator.WebAPI.Controllers
         /// <returns>GetScoreProgressResponse</returns>
         /// <response code="200">GetScoreProgressResponse</response>
         /// <response code="400"></response>
-        [HttpGet("")]
+        [HttpPost("")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetScoreProgressResponse))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<GetScoreProgressResponse> GetScores(GetScoreProgressRequest request)
