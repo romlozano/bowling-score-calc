@@ -19,6 +19,7 @@ namespace BowlingScoreCalculator.BLL.Services
             int frameProgressScore = 0;
             int completedFrameCount = 0;
             bool isBonusThrow = false;
+            // TODO: Refactor and optimise this if possible
             for (int index = 0; index < pinsDowned.Count; index++)
             {
                 int currentPinDowned = pinsDowned[index];

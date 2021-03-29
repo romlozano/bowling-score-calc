@@ -12,7 +12,8 @@ namespace BowlingScoreCalculator.BLL.UnitTests.TestData
             yield return new object[] { GetGutterBallGameRequest, GetGutterBallGameResponse };
             yield return new object[] { GetSixFramesCompletedAllThrowsOneRequest, GetSixFramesCompletedAllThrowsOneResponse };
             yield return new object[] { GetSevenFramesCompletedWithSpareAndStrikesRequest, GetSevenFramesCompletedWithSpareAndStrikesResponse };
-            // TODO: Handle gutter ball game
+            yield return new object[] { GetNoSpareNoStrikeCompletedGameRequest, GetNoSpareNoStrikeCompletedGameResponse };
+            yield return new object[] { GetAllSparesCompletedGameRequest, GetAllSparesCompletedGameResponse };
         }
 
         private static GetScoreProgressRequest GetPerfectGameRequest => new GetScoreProgressRequest
@@ -35,7 +36,7 @@ namespace BowlingScoreCalculator.BLL.UnitTests.TestData
         };
         private static GetScoreProgressRequest GetSixFramesCompletedAllThrowsOneRequest => new GetScoreProgressRequest
         {
-            PinsDowned = new List<int> { 1,1,1,1,1,1,1,1,1,1,1,1 }
+            PinsDowned = new List<int> { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
         };
         private static GetScoreProgressResponse GetSixFramesCompletedAllThrowsOneResponse => new GetScoreProgressResponse
         {
@@ -50,6 +51,24 @@ namespace BowlingScoreCalculator.BLL.UnitTests.TestData
         {
             FrameProgressScores = new List<string> { "2", "4", "16", "35", "55", "*", "*" },
             GameCompleted = false
+        };
+        private static GetScoreProgressRequest GetNoSpareNoStrikeCompletedGameRequest => new GetScoreProgressRequest
+        {
+            PinsDowned = new List<int> { 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2 }
+        };
+        private static GetScoreProgressResponse GetNoSpareNoStrikeCompletedGameResponse => new GetScoreProgressResponse
+        {
+            FrameProgressScores = new List<string> { "3", "6", "9", "12", "15", "18", "21", "24", "27", "30" },
+            GameCompleted = true
+        };
+        private static GetScoreProgressRequest GetAllSparesCompletedGameRequest => new GetScoreProgressRequest
+        {
+            PinsDowned = new List<int> { 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1 }
+        };
+        private static GetScoreProgressResponse GetAllSparesCompletedGameResponse => new GetScoreProgressResponse
+        {
+            FrameProgressScores = new List<string> { "11", "22", "33", "44", "55", "66", "77", "88", "99", "110" },
+            GameCompleted = true
         };
     }
 }
