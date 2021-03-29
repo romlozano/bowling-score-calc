@@ -1,8 +1,10 @@
-﻿using BowlingScoreCalculator.BLL.Services;
+﻿using AutoMapper;
+using BowlingScoreCalculator.BLL.Services;
 using BowlingScoreCalculator.WebAPI.Models.Request;
 using BowlingScoreCalculator.WebAPI.Models.Response;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using BLLModelsRequest = BowlingScoreCalculator.BLL.Models.Request;
 
 namespace BowlingScoreCalculator.WebAPI.Controllers
 {
@@ -11,10 +13,12 @@ namespace BowlingScoreCalculator.WebAPI.Controllers
     public class ScoresController : ControllerBase
     {
         private readonly IBowlingScoreService bowlingScoreService;
+        private readonly IMapper mapper;
 
-        public ScoresController(IBowlingScoreService bowlingScoreService)
+        public ScoresController(IBowlingScoreService bowlingScoreService, IMapper mapper)
         {
             this.bowlingScoreService = bowlingScoreService;
+            this.mapper = mapper;
         }
 
         // POST /scores
@@ -30,9 +34,12 @@ namespace BowlingScoreCalculator.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<GetScoreProgressResponse> GetScores(GetScoreProgressRequest request)
         {
-            GetScoreProgressResponse response = bowlingScoreService.GetScoreProgress(request);
+            GetScoreProgressResponse response =
+                mapper.Map<GetScoreProgressResponse>(
+                    bowlingScoreService.GetScoreProgress(mapper.Map<BLLModelsRequest.GetScoreProgressRequest>(request))
+                );
 
-            return Ok();
+            return Ok(response);
         }
     }
 }
