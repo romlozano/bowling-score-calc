@@ -12,17 +12,23 @@ namespace BowlingScoreCalculator.BLL.Services
         const int MinPinCount = 0;
         const int MaxPinCount = 10;
         const int MaxFramesCount = 10;
+        const int MaxThrowsCount = 21;
         const string PendingIndicator = "*";
 
         public GetScoreProgressResponse GetScoreProgress(GetScoreProgressRequest request)
         {
             if (request.PinsDowned.Any(p => p > MaxPinCount || p < MinPinCount))
             {
-                throw new BusinessArgumentException("Pin count is outside of allowable values", nameof(request.PinsDowned));
+                throw new BusinessArgumentException("A pin count is outside of allowable values", nameof(request.PinsDowned));
+            }
+
+            List<int> pinsDowned = request.PinsDowned.ToList();
+            if (pinsDowned.Count > MaxThrowsCount)
+            {
+                throw new BusinessArgumentException("Total number of throws exceeds the maximum value", nameof(request.PinsDowned));
             }
 
             GetScoreProgressResponse response = new GetScoreProgressResponse();
-            List<int> pinsDowned = request.PinsDowned.ToList();
             int frameProgressScore = 0;
             int completedFrameCount = 0;
             bool isBonusThrow = false;
