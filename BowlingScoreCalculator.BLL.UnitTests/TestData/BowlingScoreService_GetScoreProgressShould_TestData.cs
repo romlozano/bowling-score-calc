@@ -20,6 +20,7 @@ namespace BowlingScoreCalculator.BLL.UnitTests.TestData
         {
             yield return new object[] { RequestWithItemBelowMinValue };
             yield return new object[] { RequestWithItemAboveMaxValue };
+            yield return new object[] { RequestWithPinsDownedCountAboveMaxValue };
         }
 
         private static GetScoreProgressRequest PerfectGameRequest => new GetScoreProgressRequest
@@ -83,6 +84,10 @@ namespace BowlingScoreCalculator.BLL.UnitTests.TestData
         private static GetScoreProgressRequest RequestWithItemAboveMaxValue => new GetScoreProgressRequest
         {
             PinsDowned = new List<int> { 1, 9, 1, 9, 11, 9 }
+        };
+        private static GetScoreProgressRequest RequestWithPinsDownedCountAboveMaxValue => new GetScoreProgressRequest
+        {
+            PinsDowned = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2 }
         };
     }
 }
