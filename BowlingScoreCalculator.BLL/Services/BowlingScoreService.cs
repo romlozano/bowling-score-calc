@@ -1,5 +1,6 @@
 ﻿using BowlingScoreCalculator.BLL.Models.Request;
 using BowlingScoreCalculator.BLL.Models.Response;
+using BowlingScoreCalculator.Core.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,26 +9,39 @@ namespace BowlingScoreCalculator.BLL.Services
     public class BowlingScoreService : IBowlingScoreService
     {
         // TODO: Refactor the following const to appSettings.json
-        const int PinCount = 10;
+        const int MinPinCount = 0;
+        const int MaxPinCount = 10;
         const int MaxFramesCount = 10;
+        const int MaxThrowsCount = 21;
         const string PendingIndicator = "*";
 
         public GetScoreProgressResponse GetScoreProgress(GetScoreProgressRequest request)
         {
-            GetScoreProgressResponse response = new GetScoreProgressResponse();
+            if (request.PinsDowned.Any(p => p > MaxPinCount || p < MinPinCount))
+            {
+                throw new BusinessArgumentException("A pin count is outside of allowable values", nameof(request.PinsDowned));
+            }
+
             List<int> pinsDowned = request.PinsDowned.ToList();
+            if (pinsDowned.Count > MaxThrowsCount)
+            {
+                throw new BusinessArgumentException("Total number of throws exceeds the maximum value", nameof(request.PinsDowned));
+            }
+
+            GetScoreProgressResponse response = new GetScoreProgressResponse();
             int frameProgressScore = 0;
             int completedFrameCount = 0;
             bool isBonusThrow = false;
+            // TODO: Refactor and optimise this if possible
             for (int index = 0; index < pinsDowned.Count; index++)
             {
                 int currentPinDowned = pinsDowned[index];
-                bool isStrike = currentPinDowned == PinCount;
+                bool isStrike = currentPinDowned == MaxPinCount;
                 bool isSpare = false;
                 
                 if (isStrike == false && (index + 1) < pinsDowned.Count)
                 {
-                    isSpare = currentPinDowned + pinsDowned[index + 1] == PinCount;
+                    isSpare = currentPinDowned + pinsDowned[index + 1] == MaxPinCount;
                 }
                 
                 if (isBonusThrow)
@@ -40,7 +54,7 @@ namespace BowlingScoreCalculator.BLL.Services
                     bool canCompleteStrike = (index + 2) < pinsDowned.Count;
                     if (canCompleteStrike)
                     {
-                        int score = PinCount + pinsDowned[index + 1] + pinsDowned[index + 2];
+                        int score = MaxPinCount + pinsDowned[index + 1] + pinsDowned[index + 2];
                         frameProgressScore += score;
                         response.FrameProgressScores.Add(frameProgressScore.ToString());
                         completedFrameCount++;
